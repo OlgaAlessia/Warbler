@@ -1,6 +1,6 @@
 # Warbler
 
-This exercise is intended to extend a somewhat-functioning Twitter clone. It is intended to give you practice reading and understanding an existing application, as well as fixing bugs in it, writing tests for it, and extending it with new features.
+This exercise is intended to extend a somewhat-functioning Twitter clone. It is intended to give a practice reading and understanding an existing application, as well as fixing bugs in it, writing tests for it, and extending it with new features.
 
 **Clean & Commit As You Go.**
 
