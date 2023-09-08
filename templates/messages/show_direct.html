@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="bg">
+    <h2 class="mt-5">Private Messages received</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="list-group no-hover" id="messages">
+                {% for msg_d in msg_direct %}
+                <div class="list-group-item mt-2">
+                    <a href="{{ url_for('users_show', user_id=msg_d.sender_id) }}">
+                        <img src="{{ msg_d.sender.image_url }}" alt="" class="timeline-image">
+                    </a>
+                    <div class="message-area">
+                        <div class="message-heading">
+                            <a href="/users/{{ msg_d.sender_id }}">@{{ msg_d.sender.username }}</a>
+                        </div>
+                        <p class="single-message">{{ msg_d.message_text }}</p>
+                        <span class="text-muted">{{ msg_d.timestamp.strftime('%d %B %Y') }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

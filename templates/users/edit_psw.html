@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <h2 class="join-message">Change Your Password</h2>
+      <form method="POST" id="user_form">
+        {{ form.hidden_tag() }}
+
+        <div>Current Password:</div>
+        {% if form.current_password.errors %}
+          {% for error in form.current_password.errors %}
+            <span class="text-danger">
+            {{ error }}
+          </span>
+          {% endfor %}
+        {% endif %}
+        {{ form.current_password(placeholder="Enter your password", class="form-control") }}
+
+        {% for field in form if field.widget.input_type != 'hidden' and field.name != 'confirm_password' and field.name != 'current_password'  %}
+          {% for error in field.errors %}
+            <span class="text-danger">{{ error }}</span>
+          {% endfor %}
+          <div>{{ field.label }}</div>
+          {{ field(placeholder=field.label.text, class="form-control") }}
+        {% endfor %}
+
+        <div>New password again, for confirmation:</div>
+        {% if form.confirm_password.errors %}
+          {% for error in form.confirm_password.errors %}
+            <span class="text-danger">
+            {{ error }}
+          </span>
+          {% endfor %}
+        {% endif %}
+        {{ form.confirm_password(placeholder="Enter the new password to confirm", class="form-control") }}
+
+        <div class="edit-btn-area">
+          <button class="btn btn-success">Change password</button>
+          <a href="/users/{{ g.user.id }}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
